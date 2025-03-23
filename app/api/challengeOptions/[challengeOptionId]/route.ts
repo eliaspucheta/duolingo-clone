@@ -3,7 +3,7 @@ import { challengeOptions } from "@/db/schema";
 import { getIsAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
-import { NextRequest } from 'next/server';
+import { NextRequest } from "next/server";
 
 export const GET = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
   const { challengeOptionId } = params;
