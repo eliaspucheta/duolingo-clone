@@ -5,8 +5,9 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-export const GET = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
-  const { challengeOptionId } = params;
+// No es necesario destructurar los params en el segundo argumento. Next.js maneja esto automáticamente.
+export const GET = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
+  const { challengeOptionId } = context.params;
 
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
@@ -23,8 +24,8 @@ export const GET = async (req: NextRequest, { params }: { params: { challengeOpt
   return NextResponse.json(data);
 };
 
-export const PUT = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
-  const { challengeOptionId } = params;
+export const PUT = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
+  const { challengeOptionId } = context.params;
 
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
@@ -42,8 +43,8 @@ export const PUT = async (req: NextRequest, { params }: { params: { challengeOpt
   return NextResponse.json(data[0]);
 };
 
-export const DELETE = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
-  const { challengeOptionId } = params;
+export const DELETE = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
+  const { challengeOptionId } = context.params;
 
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
