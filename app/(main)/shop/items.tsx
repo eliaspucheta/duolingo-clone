@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { useTransition } from "react";
 import { refilfHearts } from "@/actions/user-progress";
 import { toast } from "sonner";
-import { createStripeUrl } from "@/actions/user-subscription";
 
 const POINTS_TO_REFILL = 10;
 
@@ -32,17 +31,6 @@ export const Items = ({
     });
   };
 
-  const onUpgrade = () => {
-    startTransition(() => {
-      createStripeUrl()
-        .then((response) => {
-          if(response.data) {
-            window.location.href = response.data;
-          }
-        })
-        .catch(() => toast.error("Something went wrong"))
-    });
-  };
 
   return (
     <ul className="w-full">
@@ -96,10 +84,6 @@ export const Items = ({
             Vidas ilimitadas
           </p>
         </div>
-        <Button
-        onClick={onUpgrade}
-        >
-        </Button>
       </div>
     </ul>
   )
