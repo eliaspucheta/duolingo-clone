@@ -3,40 +3,33 @@ import { challengeOptions } from "@/db/schema";
 import { getIsAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
-import { NextRequest } from 'next/server';  // Asegúrate de importar NextRequest
+import { NextRequest } from 'next/server';
 
-// Función GET
 export const GET = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
   const { challengeOptionId } = params;
 
-  // Verificar si el parámetro challengeOptionId está presente
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
   }
 
-  // Verificar si el usuario es admin
   if (!getIsAdmin()) {
     return new NextResponse("Unauthorized", { status: 403 });
   }
 
-  // Realizar la consulta
   const data = await db.query.challengeOptions.findFirst({
-    where: eq(challengeOptions.id, Number(challengeOptionId)), // Convertir challengeOptionId a número
+    where: eq(challengeOptions.id, Number(challengeOptionId)),
   });
 
   return NextResponse.json(data);
 };
 
-// Función PUT
 export const PUT = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
   const { challengeOptionId } = params;
 
-  // Verificar si el parámetro challengeOptionId está presente
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
   }
 
-  // Verificar si el usuario es admin
   if (!getIsAdmin()) {
     return new NextResponse("Unauthorized", { status: 403 });
   }
@@ -49,16 +42,13 @@ export const PUT = async (req: NextRequest, { params }: { params: { challengeOpt
   return NextResponse.json(data[0]);
 };
 
-// Función DELETE
 export const DELETE = async (req: NextRequest, { params }: { params: { challengeOptionId: string } }) => {
   const { challengeOptionId } = params;
 
-  // Verificar si el parámetro challengeOptionId está presente
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
   }
 
-  // Verificar si el usuario es admin
   if (!getIsAdmin()) {
     return new NextResponse("Unauthorized", { status: 403 });
   }
