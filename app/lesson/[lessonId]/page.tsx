@@ -1,19 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { redirect } from "next/navigation";
 
 import { getLesson, getUserProgress } from "@/db/queries";
 import { Quiz } from "../quiz";
 
 type Props = {
-  params: {
+  params: Promise<{
     lessonId: number;
-  };
+  }>;
 };
 
-const LessonIdPage = async ({
-  params
-}) => {
-  const lessonData = await getLesson(params.lessonId);
+const LessonIdPage = async ({ params }: Props) => {
+  const { lessonId } = await params;
+
+  const lessonData = getLesson(lessonId);
   const userProgressData = getUserProgress();
 
   const [
@@ -24,7 +23,7 @@ const LessonIdPage = async ({
     userProgressData
   ]);
 
-  if(!lesson || !userProgress) {
+  if (!lesson || !userProgress) {
     redirect("/learn");
   }
 

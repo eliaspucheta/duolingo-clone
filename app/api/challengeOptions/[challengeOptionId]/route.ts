@@ -2,11 +2,10 @@ import db from "@/db/drizzle";
 import { challengeOptions } from "@/db/schema";
 import { getIsAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
-  const { challengeOptionId } = context.params;
+export const GET = async (req: NextRequest, props: { params: Promise<{ challengeOptionId: string }> }) => {
+  const { challengeOptionId } = await props.params;
 
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
@@ -23,8 +22,8 @@ export const GET = async (req: NextRequest, context: { params: { challengeOption
   return NextResponse.json(data);
 };
 
-export const PUT = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
-  const { challengeOptionId } = context.params;
+export const PUT = async (req: NextRequest, props: { params: Promise<{ challengeOptionId: string }> }) => {
+  const { challengeOptionId } = await props.params;
 
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
@@ -42,8 +41,8 @@ export const PUT = async (req: NextRequest, context: { params: { challengeOption
   return NextResponse.json(data[0]);
 };
 
-export const DELETE = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
-  const { challengeOptionId } = context.params;
+export const DELETE = async (req: NextRequest, props: { params: Promise<{ challengeOptionId: string }> }) => {
+  const { challengeOptionId } = await props.params;
 
   if (!challengeOptionId) {
     return new NextResponse("Challenge Option ID is missing", { status: 400 });
