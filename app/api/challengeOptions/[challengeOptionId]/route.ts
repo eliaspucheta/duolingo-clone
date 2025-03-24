@@ -5,7 +5,6 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-// No es necesario destructurar los params en el segundo argumento. Next.js maneja esto automáticamente.
 export const GET = async (req: NextRequest, context: { params: { challengeOptionId: string } }) => {
   const { challengeOptionId } = context.params;
 
