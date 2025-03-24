@@ -8,8 +8,8 @@ import db from "@/db/drizzle";
 import { challengeProgress, userProgress, challenges } from "@/db/schema";
 import { getCourseById, getUserProgress } from "@/db/queries";
 import { and, eq } from "drizzle-orm";
+import { POINTS_TO_REFILL } from "@/constants";
 
-const POINTS_TO_REFILL = 10;
 
 export const upserUserProgress = async (courseId: number) => {
   const { userId } = await auth();
