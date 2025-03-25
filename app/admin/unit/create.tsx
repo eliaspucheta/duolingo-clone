@@ -16,7 +16,8 @@ export const UnitCreate = () => {
         />
         <ReferenceInput
           source="courseId"
-          reference="cursos"
+          reference="courses"
+          label="Cursos"
         />
         <NumberInput
           source="order"

@@ -32,10 +32,9 @@ export const Header = () => {
             <SignInButton
             mode="modal"
             signUpForceRedirectUrl="/learn"
-
             >
               <Button size="lg" variant="ghost">
-                Login
+                Iniciar Sesión
               </Button>
             </SignInButton>
           </SignedOut>
