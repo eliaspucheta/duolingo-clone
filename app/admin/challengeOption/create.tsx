@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 import {
   SimpleForm,
   Create,
@@ -5,20 +7,25 @@ import {
   TextInput,
   required,
   ReferenceInput,
-  AutocompleteInput,
+  Link,
 } from "react-admin";
 
 export const ChallengeOptionCreate = () => {
   return (
     <Create>
+      <div className="pt-4 pl-4">
+        <Link to="/challengeOptions">
+          <Button variant="adminPanelBack" size="sm">
+            <ChevronLeft /> RETURN
+          </Button>
+        </Link>
+      </div>
       <SimpleForm>
-        <TextInput source="text" validate={[required()]} label="Texto" />
-        <BooleanInput source="correct" label="Opción correcta" />
-        <ReferenceInput source="challengeId" reference="challenges">
-          <AutocompleteInput label="Desafios" />
-        </ReferenceInput>
-        <TextInput source="ImageSrc" label="URL de la imagen" />
-        <TextInput source="audioSrc" label="URL del audio" />
+        <TextInput source="text" validate={[required()]} />
+        <BooleanInput source="correct" label="Correct option" />
+        <ReferenceInput source="challengeId" reference="challenges" />
+        <TextInput source="ImageSrc" label="Image URL" />
+        <TextInput source="audioSrc" label="Audio URL" />
       </SimpleForm>
     </Create>
   );

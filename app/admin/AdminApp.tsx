@@ -33,7 +33,6 @@ const AdminApp = () => {
         create={CourseCreate}
         edit={CourseEdit}
         recordRepresentation="title"
-        options={{ label: "Cursos" }}
       />
       <Resource
         name="units"
@@ -41,7 +40,6 @@ const AdminApp = () => {
         create={UnitCreate}
         edit={UnitEdit}
         recordRepresentation="title"
-        options={{ label: "Unidades" }}
       />
       <Resource
         name="lessons"
@@ -49,7 +47,6 @@ const AdminApp = () => {
         create={LessonCreate}
         edit={LessonEdit}
         recordRepresentation="title"
-        options={{ label: "Lecciónes" }}
       />
       <Resource
         name="challenges"
@@ -57,7 +54,6 @@ const AdminApp = () => {
         create={ChallengeCreate}
         edit={ChallengeEdit}
         recordRepresentation="question"
-        options={{ label: "Desafíos" }}
       />
       <Resource
         name="challengeOptions"
@@ -65,7 +61,6 @@ const AdminApp = () => {
         create={ChallengeOptionCreate}
         edit={ChallengeOptionEdit}
         recordRepresentation="text"
-        options={{ label: "Opciónes de Desafíos" }}
       />
     </Admin>
   )
