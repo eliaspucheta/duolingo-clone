@@ -14,7 +14,7 @@ export const ChallengeOptionEdit = () => {
   return (
     <Edit>
       <div className="pt-4 pl-4">
-        <Link to="/units">
+        <Link to="/challengeOptions">
           <Button variant="adminPanelBack" size="sm">
             <ChevronLeft /> RETURN
           </Button>

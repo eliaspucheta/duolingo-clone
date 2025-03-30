@@ -4,7 +4,10 @@ import { getIsAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm";
 import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async (req: NextRequest, props: { params: Promise<{ challengeOptionId: string }> }) => {
+export const GET = async (
+  req: NextRequest,
+  props: { params: Promise<{ challengeOptionId: string }> }
+) => {
   const { challengeOptionId } = await props.params;
 
   if (!challengeOptionId) {
@@ -22,7 +25,10 @@ export const GET = async (req: NextRequest, props: { params: Promise<{ challenge
   return NextResponse.json(data);
 };
 
-export const PUT = async (req: NextRequest, props: { params: Promise<{ challengeOptionId: string }> }) => {
+export const PUT = async (
+  req: NextRequest,
+  props: { params: Promise<{ challengeOptionId: string }> }
+) => {
   const { challengeOptionId } = await props.params;
 
   if (!challengeOptionId) {
@@ -34,14 +40,21 @@ export const PUT = async (req: NextRequest, props: { params: Promise<{ challenge
   }
 
   const body = await req.json();
-  const data = await db.update(challengeOptions).set({
-    ...body,
-  }).where(eq(challengeOptions.id, Number(challengeOptionId))).returning();
+  const data = await db
+    .update(challengeOptions)
+    .set({
+      ...body,
+    })
+    .where(eq(challengeOptions.id, Number(challengeOptionId)))
+    .returning();
 
   return NextResponse.json(data[0]);
 };
 
-export const DELETE = async (req: NextRequest, props: { params: Promise<{ challengeOptionId: string }> }) => {
+export const DELETE = async (
+  req: NextRequest,
+  props: { params: Promise<{ challengeOptionId: string }> }
+) => {
   const { challengeOptionId } = await props.params;
 
   if (!challengeOptionId) {
@@ -52,8 +65,10 @@ export const DELETE = async (req: NextRequest, props: { params: Promise<{ challe
     return new NextResponse("Unauthorized", { status: 403 });
   }
 
-  const data = await db.delete(challengeOptions)
-    .where(eq(challengeOptions.id, Number(challengeOptionId))).returning();
+  const data = await db
+    .delete(challengeOptions)
+    .where(eq(challengeOptions.id, Number(challengeOptionId)))
+    .returning();
 
   return NextResponse.json(data[0]);
 };
