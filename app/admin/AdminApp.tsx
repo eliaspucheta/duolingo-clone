@@ -61,9 +61,10 @@ const AdminApp = () => {
         create={ChallengeOptionCreate}
         edit={ChallengeOptionEdit}
         recordRepresentation="text"
+        options={{ label: "Challenge Options" }}
       />
     </Admin>
-  )
+  );
 };
 
 export default AdminApp;
