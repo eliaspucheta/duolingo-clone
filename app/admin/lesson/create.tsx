@@ -16,7 +16,7 @@ export const LessonCreate = () => {
       <div className="pt-4 pl-4">
         <Link to="/lessons">
           <Button variant="adminPanelBack" size="sm">
-            <ChevronLeft /> BACK
+            <ChevronLeft /> RETURN
           </Button>
         </Link>
       </div>
